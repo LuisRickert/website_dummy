@@ -1,0 +1,4 @@
+[submodule "doc_demo"]
+	path = doc_demo
+	url = git@github.com:LuisRickert/doc_demo.git
+	branch = doc

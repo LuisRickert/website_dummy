@@ -1,0 +1,28 @@
+
+name: Update submodule
+run-name: ${{ github.actor }} update Documentation 🚀
+on: [push]
+jobs:
+  Create-Documentatio-Branch:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: update sumodule
+        run: git config user.email "actions@github.com" && 
+             git config user.name "GitHub Documentation update Bot" &&  
+             git submodule foreach git pull origin doc
+             git commit -a  -m "DocBot update documentation " &&
+             git push --force 
+      
